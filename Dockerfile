@@ -1,13 +1,18 @@
-# Speciy a base image
-FROM node:26-alpine3.23
+FROM node:22-alpine AS build
 
 WORKDIR /app
-COPY ./package.json ./
 
-#Install Node.js and npm
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 
-COPY ./ ./
+COPY . .
+RUN npm run build
 
-#Default command to run the container
-CMD ["npm", "start"]
+FROM nginx:1.27-alpine
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

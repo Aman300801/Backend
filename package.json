@@ -1,22 +1,20 @@
 {
-  "name": "backend-deploy",
+  "name": "frontend",
   "version": "1.0.0",
-  "description": "Deploying Backend",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "node --env-file=.env --watch index"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "author": "Aman Sharma ",
-  "license": "ISC",
   "dependencies": {
-    "colors": "^1.4.0",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "nodemon": "^3.1.10",
-    "pg": "^8.16.3",
-    "redis": "^6.3.1",
-    "socket.io": "^4.8.1"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "vite": "^7.2.2"
   }
 }
